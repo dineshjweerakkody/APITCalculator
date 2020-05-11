@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>APIT Calculator</title>
+
+    <meta name="description" content="APIT Calculator">
+    <meta name="author" content="Dinesh J Weerakkody">
+
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+	<link href="css/style.css" rel="stylesheet">
+	
+	<style>
+		.table-success input{
+			text-align: right;
+			/*border: none;
+			background-color: #dff0d8;*/
+		}
+		.table-warning input{
+			text-align: right;
+			/*border: none;
+			background-color: #fcf8e3;*/
+		}
+		/*.table-success input:hover{
+			background-color: #ffffff;
+		}
+		.table-warning input:hover{
+			background-color: #ffffff;
+		}*/
+	</style>
+  </head>
+  <body>
+    <div class="container-fluid">
+		<div>
+			<div class="col-md-12" style="text-align: center;">
+				<h1>APIT Calculator</h1>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<table class="table table-sm" id="mainTable">
+					<thead>
+						<tr>
+							<th>
+								Description
+							</th>
+							<th style="width: 150px; text-align: center;">
+								First Month
+							</th>
+							<th style="width: 150px; text-align: center;">
+								Second Month
+							</th>
+							<th style="width: 150px; text-align: center;">
+								Third Month
+							</th>
+							<th style="width: 150px; text-align: center;">
+								Quarter Amount
+							</th>
+							<th style="width: 50px;"> 
+								<a id="modal-addrow" href="#modal-container-addrow" role="button" data-toggle="modal"class="btn btn-success btn-sm" type="button">+</a>
+							</th>
+						</tr>
+					</thead>
+					<tbody id="itembody">
+					</tbody>
+					<tbody id="summerybody">
+						<tr>
+							<td colspan="4">
+								Total Income
+							</td>
+							<td>
+								<input class="form-control" id="totalIncome" value="0.00" readonly style="text-align: right;" />
+							</td>
+							<th style="width: 50px;"> 
+								
+							</th>
+						</tr>
+						<tr>
+							<td colspan="4">
+								Total Expenditure
+							</td>
+							<td>
+								<input class="form-control" id="totalExpenses" value="0.00" readonly style="text-align: right;" />
+							</td>
+							<th style="width: 50px;"> 
+								
+							</th>
+						</tr>
+						<tr>
+							<th colspan="4">
+								Eligible Expenditure
+							</th>
+							<td>
+								<input class="form-control" id="exDeduction" value="0.00" readonly style="text-align: right;" />
+							</td>
+							<th style="width: 50px;"> 
+								
+							</th>
+						</tr>
+						<tr>
+							<th colspan="4">
+								Tax-Free Allowance (3,000,000.00 per year)
+							</th>
+							<td>
+								<input class="form-control" id="personalRelief" value="750,000.00" readonly style="text-align: right;" />
+							</td>
+							<th style="width: 50px;"> 
+								
+							</th>
+						</tr>
+						<tr>
+							<th colspan="4">
+								Taxable Income
+							</th>
+							<td>
+								<input class="form-control" id="taxableIncome" value="0.00" readonly style="text-align: right;" />
+							</td>
+							<th style="width: 50px;"> 
+								
+							</th>
+						</tr>
+						<tr>
+							<th colspan="4">
+								Tax for the Quarter
+							</th>
+							<td>
+								<input class="form-control" id="tax" value="0.00" readonly style="text-align: right; font-weight: bold;" />
+							</td>
+							<th style="width: 50px;"> 
+								
+							</th>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+
+	
+
+	<div class="modal fade" id="modal-container-addrow" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="myModalLabel">
+						Add Row
+					</h5> 
+					<button type="button" class="close" data-dismiss="modal">
+						<span aria-hidden="true">×</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<div class="row">
+						<div class="col-md-4" style="text-align: right;">
+							Type
+						</div>
+						<div class="col-md-4">
+							<select id="add-row-type">
+								<option value="I">Income</option>
+								<option value="E">Expence</option>
+							</select>
+						</div>
+					</div>
+					<div>
+						<br/>
+					</div>
+					<div class="row">
+						<div class="col-md-4" style="text-align: right;">
+							Label
+						</div>
+						<div class="col-md-4">
+							<input id="add-row-lable" size="25"/>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+						
+					<button type="button" class="btn btn-primary" id="addRowSave">
+						Add
+					</button> 
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">
+						Close
+					</button>
+				</div>
+			</div>
+			
+		</div>
+	</div>
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+	<script src="js/scripts.js"></script>
+
+	<script type="text/template" data-template="row">
+		<tr class="${trclass}">
+			<td>
+				${lineName}
+			</td>
+			<td>
+				<input class="form-control" id="fm-${id}" value="${fm}" onchange="oce(${id})"/>
+			</td>
+			<td>
+				<input class="form-control" id="sm-${id}" value="${sm}" onchange="oce(${id})"/>
+			</td>
+			<td>
+				<input class="form-control" id="tm-${id}" value="${tm}" onchange="oce(${id})"/>
+			</td>
+			<td>
+				<input class="form-control rs-${trclass}" id="rs-${id}" value="${rs}" readonly />
+			</td>
+			<td>
+				<a href="#" class="btn btn-danger btn-sm" type="button" onclick="rr('${id}')">X</a>
+			</td>
+		</tr>
+	  </script>
+  </body>
+</html>
