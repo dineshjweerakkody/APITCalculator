@@ -1,4 +1,4 @@
-# apit-calculator
+# APIT Calculator
 APIT (Advance Personal Income Tax) Calculator
 
 This is a simple calculator to find the quartaly tax amount with the latest Sri lanka income tax guidelines.
