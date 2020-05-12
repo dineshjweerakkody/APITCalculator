@@ -16,32 +16,23 @@
 	<style>
 		.table-success input{
 			text-align: right;
-			/*border: none;
-			background-color: #dff0d8;*/
 		}
 		.table-warning input{
 			text-align: right;
-			/*border: none;
-			background-color: #fcf8e3;*/
 		}
-		/*.table-success input:hover{
-			background-color: #ffffff;
-		}
-		.table-warning input:hover{
-			background-color: #ffffff;
-		}*/
 	</style>
   </head>
   <body>
     <div class="container-fluid">
 		<div>
-			<div class="col-md-12" style="text-align: center;">
+			<div class="col-lg-12" style="text-align: center;">
 				<h1>APIT Calculator</h1>
-				Please note that, this calculator is running on your browser and nothing is recorded on anywhere.
+				<span style="color: brown;">Please note that, this calculator is running on your browser and nothing is recorded on anywhere</span>
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-md-12">
+			<div class="col-lg-2"></div>
+			<div class="col-lg-8">
 				<table class="table table-sm" id="mainTable">
 					<thead>
 						<tr>
@@ -92,7 +83,7 @@
 						</tr>
 						<tr>
 							<th colspan="4">
-								Eligible Expenditure
+								Eligible Expenditure (Maximum 1,200,000.00 per year)
 							</th>
 							<td>
 								<input class="form-control" id="exDeduction" value="0.00" readonly style="text-align: right;" />
@@ -139,9 +130,6 @@
 			</div>
 		</div>
 	</div>
-
-	
-
 	<div class="modal fade" id="modal-container-addrow" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
